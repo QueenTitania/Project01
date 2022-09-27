@@ -9,7 +9,7 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] public AudioSource dieSFX;
     [SerializeField] public ParticleSystem dieVFX;
 
-    int currentHealth;
+    public int currentHealth;
 
     private AudioSource dieAudio;
     private ParticleSystem dieExplode;
@@ -31,7 +31,14 @@ public class Health : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
             Kill();
         Debug.Log("current health " + currentHealth);
+
+        if(this.GetComponent<Player>() != null)
+            this.GetComponent<Player>().HealthUpdate(currentHealth);
+
+        if(this.GetComponent<Boss>() != null)
+            this.GetComponent<Boss>().HealthUpdate(currentHealth);
     }
+
 
     public void Kill()
     {
