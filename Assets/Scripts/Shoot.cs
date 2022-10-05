@@ -34,10 +34,20 @@ public class Shoot : MonoBehaviour
 
     }
 
+    public void BossShootCharge(GameObject bullet, Boss boss)
+    {
+        shot = Instantiate(bullet, boss.transform.position, boss.transform.rotation);
+        
+        ShootFX(shot);
+        shot.GetComponent<Rigidbody>().AddForce(shot.transform.forward * shootForce);
+        Physics.IgnoreCollision(shot.GetComponent<Collider>(), boss.GetComponent<Collider>());
+        Destroy(shot, lifetime);
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<IDamageable>().TakeDamage(1);
+        other.gameObject.GetComponent<Health>().TakeDamage(1);
 
         Impact();
     }

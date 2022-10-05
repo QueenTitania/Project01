@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.UIElements;
+using System;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
-    [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject slider;
+    private Health healthBar;
     private Shoot gun;
     private Slider healthSlider;
 
     public void Start()
     {
         gun = bullet.GetComponent<Shoot>();
-        //healthSlider = healthBar.GetComponent<Slider>();
+        healthBar = this.GetComponent<Health>();
+        healthSlider = slider.GetComponent<Slider>();
+
+        healthBar.HealthBarUpdate += OnHealthUpdate;
     }
 
     public void Update()
@@ -23,12 +27,18 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             gun.ShootCharge(bullet, this);
 
+        
     }
 
-    public void HealthUpdate(int currentHealth)
+    public void OnHealthUpdate(int newHealth)
     {
-        healthBar.GetComponent<Slider>().value = currentHealth;
+        healthSlider.value = newHealth;
 
+        if(newHealth < 3)
+            healthSlider.fillRect.GetComponent<Image>().color = Color.red;
+        //Debug.Log("health at: " + newHealth);
     }
+
+
 
 }

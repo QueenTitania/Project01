@@ -14,6 +14,7 @@ public class Health : MonoBehaviour, IDamageable
     private AudioSource dieAudio;
     private ParticleSystem dieExplode;
 
+    public event System.Action<int> HealthBarUpdate;
 
     public void Start()
     {
@@ -32,13 +33,19 @@ public class Health : MonoBehaviour, IDamageable
             Kill();
         Debug.Log("current health " + currentHealth);
 
-        if(this.GetComponent<Player>() != null)
-            this.GetComponent<Player>().HealthUpdate(currentHealth);
+        HealthUpdate();
 
-        if(this.GetComponent<Boss>() != null)
-            this.GetComponent<Boss>().HealthUpdate(currentHealth);
+        //if(this.GetComponent<Player>() != null)
+          //  this.GetComponent<Player>().HealthUpdate();
+          
+        //if(this.GetComponent<Boss>() != null)
+          //  this.GetComponent<Boss>().HealthUpdate(currentHealth);
     }
 
+    public void HealthUpdate()
+    {
+        HealthBarUpdate?.Invoke(currentHealth);
+    }
 
     public void Kill()
     {
