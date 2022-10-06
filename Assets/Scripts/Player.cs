@@ -8,9 +8,16 @@ public class Player : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject slider;
+
     private Health healthBar;
     private Shoot gun;
     private Slider healthSlider;
+    [SerializeField] CameraShake cameraShake;
+    [SerializeField] float duration;
+    [SerializeField] float magnitude;
+    [SerializeField] FlashImage flashImage;
+
+
 
     public void Start()
     {
@@ -19,6 +26,7 @@ public class Player : MonoBehaviour
         healthSlider = slider.GetComponent<Slider>();
 
         healthBar.HealthBarUpdate += OnHealthUpdate;
+        GetComponent<Health>().Damaged += OnDamaged;
     }
 
     public void Update()
@@ -38,7 +46,12 @@ public class Player : MonoBehaviour
             healthSlider.fillRect.GetComponent<Image>().color = Color.red;
         //Debug.Log("health at: " + newHealth);
     }
-
-
+    
+    public void OnDamaged()
+    {
+        StartCoroutine(cameraShake.Shake(duration, magnitude));
+        flashImage.StartFlash(.5f,1);
+    }
+    
 
 }

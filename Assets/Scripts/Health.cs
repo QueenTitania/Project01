@@ -15,6 +15,7 @@ public class Health : MonoBehaviour, IDamageable
     private ParticleSystem dieExplode;
 
     public event System.Action<int> HealthBarUpdate;
+    public event System.Action Damaged;
 
     public void Start()
     {
@@ -29,11 +30,14 @@ public class Health : MonoBehaviour, IDamageable
     {
         if (currentHealth > 0)
             currentHealth -= damage;
+
+        HealthUpdate();
+
         if (currentHealth <= 0)
             Kill();
         Debug.Log("current health " + currentHealth);
 
-        HealthUpdate();
+        
 
         //if(this.GetComponent<Player>() != null)
           //  this.GetComponent<Player>().HealthUpdate();
@@ -45,6 +49,7 @@ public class Health : MonoBehaviour, IDamageable
     public void HealthUpdate()
     {
         HealthBarUpdate?.Invoke(currentHealth);
+        Damaged?.Invoke();
     }
 
     public void Kill()
