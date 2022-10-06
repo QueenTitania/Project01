@@ -16,12 +16,13 @@ public class FlashImage : MonoBehaviour
     public void StartFlash(float secFlash, float maxAlpha)
     {
         image.color = Color.white;
-        maxAlpha = Mathf.Clamp(maxAlpha, 0, 1);
+        maxAlpha = Mathf.Clamp(maxAlpha, 0, .75f);
 
         if(currentFlash != null)
             StopCoroutine(currentFlash);
 
         currentFlash = StartCoroutine(Flash(secFlash,maxAlpha));
+        
     }
 
     private IEnumerator Flash(float secFlash, float maxAlpha)
@@ -50,7 +51,7 @@ public class FlashImage : MonoBehaviour
 
             yield return null;
         }
-        
+        image.color = new Color(1,1,1,0);
     }
 
 }
