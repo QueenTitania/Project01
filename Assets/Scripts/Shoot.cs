@@ -62,7 +62,7 @@ public class Shoot : MonoBehaviour
         Destroy(bang, shootClip.clip.length);
     }
 
-    private void Impact()
+    public void Impact()
     {
         particleInstance = Instantiate(impactParticle, this.gameObject.transform.position, this.gameObject.transform.rotation);
         audioInstance = Instantiate(impactClip, this.gameObject.transform.position, this.gameObject.transform.rotation);

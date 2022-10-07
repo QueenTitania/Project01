@@ -16,7 +16,6 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] public NavMeshAgent agent;
 
     private bool canSeePlayer;
-
     private float distance;
 
     
@@ -73,6 +72,16 @@ public class FieldOfView : MonoBehaviour
         }
         else
             agent.isStopped = true;
+    }
+
+    public bool GetSeePlayer()
+    {
+        return canSeePlayer;
+    }
+
+    public void SetSeePlayer(bool changeSight)
+    {
+        canSeePlayer = changeSight;
     }
 
 }
