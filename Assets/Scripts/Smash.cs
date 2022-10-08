@@ -24,7 +24,7 @@ public class Smash : MonoBehaviour
     [SerializeField] AudioSource noimpactClip;
 
     private FieldOfView fieldfView;
-    private bool smashing;
+    public bool smashing;
     private Coroutine currentCor = null;
     private ParticleSystem particleInstance;
     private AudioSource audioInstance;

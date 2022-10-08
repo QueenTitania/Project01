@@ -305,9 +305,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 5
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 5
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3974,6 +3974,7 @@ GameObject:
   - component: {fileID: 1565049551}
   - component: {fileID: 1565049558}
   - component: {fileID: 1565049559}
+  - component: {fileID: 1565049560}
   - component: {fileID: 1565049554}
   - component: {fileID: 1565049555}
   - component: {fileID: 1565049557}
@@ -4144,6 +4145,35 @@ MonoBehaviour:
   impactClip: {fileID: 7280886415816292705, guid: 980edbabab278f645a55669e66eb2c8b, type: 3}
   noimpactParticle: {fileID: 5351478083849015596, guid: 0cbc1b4de9260af43a0e6476c457a5b7, type: 3}
   noimpactClip: {fileID: 1235519204619227878, guid: a4bd7935e698cd7429e033ec6899a0ce, type: 3}
+  smashing: 0
+--- !u!114 &1565049560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565049550}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c67fce6ef0541442ae374cc9d60a6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 732590192}
+  artNeutral: {fileID: 1466590083}
+  artAnticipate: {fileID: 1673175231}
+  artHit: {fileID: 194105773}
+  magicCircleObject: {fileID: 3275629282880865302, guid: 44ed39905bc20d247896e6d88abcf048, type: 3}
+  standingPos: {fileID: 1580172589}
+  anticipateTime: 2
+  hitTime: 0.5
+  cameraShake: {fileID: 139571744}
+  shakeDuration: 0.15
+  shakeMagnitude: 0.1
+  impactParticle: {fileID: 6985732317177847531, guid: 7115a804f60d85b43a91aa6126f76de4, type: 3}
+  impactClip: {fileID: 7280886415816292705, guid: 980edbabab278f645a55669e66eb2c8b, type: 3}
+  magicParticle: {fileID: 957683262328204819, guid: 7356baa9b58a89846ac95afad995dc95, type: 3}
+  magicClip: {fileID: 7383733188432675160, guid: 74d5664ecd961134a83922a002da0a09, type: 3}
+  magicing: 0
 --- !u!1 &1568072360
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,6 +4271,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568072360}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1580172589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1580172590}
+  m_Layer: 0
+  m_Name: MagicPhasePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1580172590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580172589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -12.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635612226
 GameObject:
   m_ObjectHideFlags: 0

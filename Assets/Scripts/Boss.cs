@@ -10,13 +10,14 @@ public class Boss : MonoBehaviour
     private Health healthBar;
     private Shoot gun;
     private Slider healthSlider;
+    private int currentHealth;
 
      public void Start()
     {
         gun = bullet.GetComponent<Shoot>();
         healthBar = this.GetComponent<Health>();
         healthSlider = slider.GetComponent<Slider>();
-
+        currentHealth = GetComponent<Health>().currentHealth;
         healthBar.HealthBarUpdate += OnHealthUpdate;
         
     }
@@ -29,11 +30,39 @@ public class Boss : MonoBehaviour
 
     public void OnHealthUpdate(int newHealth)
     {
+        currentHealth = newHealth;
         healthSlider.value = newHealth;
 
-        if(newHealth < 3)
+        if(newHealth <= 8 && newHealth >5)
+            MagicAttackPhase();
+
+        if(newHealth <= 5 && newHealth >=3)
+            SmashAttackPhase();
+
+        if(newHealth < 3 && newHealth >0)
+            MagicAttackPhase();
+
+        if(newHealth <= 3)
+        {
             healthSlider.fillRect.GetComponent<Image>().color = Color.red;
+            
+        }
+            
         //Debug.Log("health at: " + newHealth);
+    }
+
+    private void MagicAttackPhase()
+    {
+        GetComponent<Smash>().enabled = false;
+        GetComponent<BossRotate>().enabled = false;
+        GetComponent<MagicAttack>().enabled = true;
+    }
+
+    private void SmashAttackPhase()
+    {
+        GetComponent<MagicAttack>().enabled = false;
+        GetComponent<BossRotate>().enabled = true;
+        GetComponent<Smash>().enabled = true;
     }
 
 }

@@ -17,12 +17,17 @@ public class FieldOfView : MonoBehaviour
 
     private bool canSeePlayer;
     private float distance;
+    private Smash smash;
+    private MagicAttack magicAttack;
 
     
 
     private void Start()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
+        smash = GetComponent<Smash>();
+        magicAttack = GetComponent<MagicAttack>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -72,6 +77,7 @@ public class FieldOfView : MonoBehaviour
         }
         else
             agent.isStopped = true;
+
     }
 
     public bool GetSeePlayer()
