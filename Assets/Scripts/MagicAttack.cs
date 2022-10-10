@@ -62,7 +62,6 @@ public class MagicAttack : MonoBehaviour
     private void Attack()
     {
         magicing = true;
-        transform.rotation = Quaternion.Euler(0,Vector3.Angle(transform.forward, directionToTarget),0);
         if(currentCor == null)
         currentCor = StartCoroutine(WaitTime(anticipateTime, hitTime));
 
@@ -77,6 +76,7 @@ public class MagicAttack : MonoBehaviour
         artAnticipate.SetActive(true);
         artNeutral.SetActive(false);
         CircleSpawn();
+        //transform.rotation = Quaternion.Euler(0,directionToTarget,0);
         yield return new WaitForSeconds(antAmount);
 
         //Debug.Log("hitting");
@@ -104,8 +104,9 @@ public class MagicAttack : MonoBehaviour
 
     public void CircleSpawn()
     {
+        
         circleInstance = Instantiate(magicCircleObject, new Vector3(target.gameObject.transform.position.x,0.2f,target.gameObject.transform.position.z), Quaternion.Euler(0,0,0));
-        directionToTarget = (circleInstance.transform.position - transform.position).normalized;
+        transform.LookAt(circleInstance.transform.position);
         magicParticleInstance = Instantiate(magicParticle, circleInstance.gameObject.transform);
         magicAudioInstance = Instantiate(magicClip, circleInstance.gameObject.transform);
         magicParticleInstance.Play();
@@ -125,4 +126,5 @@ public class MagicAttack : MonoBehaviour
         Destroy(audioInstance, impactClip.clip.length);
     }
 
+    
 }
