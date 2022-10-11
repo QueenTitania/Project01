@@ -34,19 +34,21 @@ public class Boss : MonoBehaviour
         healthSlider.value = newHealth;
 
         if(newHealth <= 8 && newHealth >5)
-            MagicAttackPhase();
+        {    MagicAttackPhase();
+            healthSlider.fillRect.GetComponent<Image>().color = new Color32(180,200,60,255);
+        }
 
         if(newHealth <= 5 && newHealth >=3)
-            SmashAttackPhase();
+        {    SmashAttackPhase();
+            healthSlider.fillRect.GetComponent<Image>().color = new Color32(230,220,80,255);
+        }
 
         if(newHealth < 3 && newHealth >0)
-            MagicAttackPhase();
-
-        if(newHealth <= 3)
-        {
-            healthSlider.fillRect.GetComponent<Image>().color = Color.red;
-            
+        {    MagicAttackPhase();
+            healthSlider.fillRect.GetComponent<Image>().color = new Color32(230,125,30,255);
         }
+
+        
             
         //Debug.Log("health at: " + newHealth);
     }
