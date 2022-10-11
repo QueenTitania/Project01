@@ -25,6 +25,9 @@ public class MagicAttack : MonoBehaviour
 
     [SerializeField] ParticleSystem magicParticle;
     [SerializeField] AudioSource magicClip;
+    [SerializeField] ParticleSystem shootMagicParticle;
+    [SerializeField] AudioSource shootMagicClip;
+    [SerializeField] ParticleSystem circleMagicParticle;
 
      private ParticleSystem boomParticle;
      private AudioSource boomClip;
@@ -76,12 +79,14 @@ public class MagicAttack : MonoBehaviour
         artAnticipate.SetActive(true);
         artNeutral.SetActive(false);
         CircleSpawn();
+        
         //transform.rotation = Quaternion.Euler(0,directionToTarget,0);
         yield return new WaitForSeconds(antAmount);
 
         //Debug.Log("hitting");
         artAnticipate.SetActive(false);
         artHit.SetActive(true);
+        ShootMagic();
 
         if(Vector3.Distance(circleInstance.transform.position, target.transform.position) <= 5f)
         {
@@ -126,5 +131,18 @@ public class MagicAttack : MonoBehaviour
         Destroy(audioInstance, impactClip.clip.length);
     }
 
+
+    private void ShootMagic()
+    {
+        magicParticleInstance = Instantiate(shootMagicParticle, this.gameObject.transform);
+        particleInstance = Instantiate(circleMagicParticle, circleInstance.gameObject.transform);
+        magicAudioInstance = Instantiate(shootMagicClip, circleInstance.gameObject.transform);
+        magicParticleInstance.Play();
+        magicAudioInstance.Play();
+        particleInstance.Play();
+        Destroy(magicParticleInstance, 1);
+        Destroy(magicAudioInstance, shootMagicClip.clip.length);
+        Destroy(particleInstance, 1);
+    }
     
 }
