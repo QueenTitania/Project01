@@ -37,7 +37,7 @@ public class Smash : MonoBehaviour
 
     void Update()
     {
-        if(fieldfView.GetSeePlayer() && Vector3.Distance(transform.position, target.transform.position) <= 5f && !smashing)
+        if(fieldfView.GetSeePlayer() && Vector3.Distance(transform.position, target.transform.position) <= 5f && !smashing && target.activeSelf)
             SmashAttack();
     }
 

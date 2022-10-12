@@ -9,6 +9,8 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] public AudioSource dieSFX;
     [SerializeField] public ParticleSystem dieVFX;
 
+    [SerializeField] GameController gameController;
+
     public int currentHealth;
 
     private AudioSource dieAudio;
@@ -62,7 +64,13 @@ public class Health : MonoBehaviour, IDamageable
         dieExplode.Play();
         Destroy(dieExplode, 1);
 
+        if(GetComponent<Boss>() != null)
+            gameController.WinMenu();
+        if(GetComponent<Player>() != null)
+            gameController.LoseMenu();
+
         gameObject.SetActive(false);
+        
     }
 
 }

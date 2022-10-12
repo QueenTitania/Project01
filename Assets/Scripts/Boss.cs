@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     [SerializeField] GameObject slider;
-    [SerializeField] GameObject bullet;
+    //[SerializeField] GameObject bullet;
     private Health healthBar;
-    private Shoot gun;
+    //private Shoot gun;
     private Slider healthSlider;
     private int currentHealth;
 
      public void Start()
     {
-        gun = bullet.GetComponent<Shoot>();
+        //gun = bullet.GetComponent<Shoot>();
         healthBar = this.GetComponent<Health>();
         healthSlider = slider.GetComponent<Slider>();
         currentHealth = GetComponent<Health>().currentHealth;
@@ -24,8 +24,8 @@ public class Boss : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z))
-            gun.BossShootCharge(bullet, this);
+        //if(Input.GetKeyDown(KeyCode.Z))
+          //  gun.BossShootCharge(bullet, this);
     }
 
     public void OnHealthUpdate(int newHealth)

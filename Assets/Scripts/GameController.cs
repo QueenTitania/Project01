@@ -5,13 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject winPanel;
+    [SerializeField] GameObject losePanel;
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-            SceneManager.LoadScene("Sandbox");
         if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+            pausePanel.SetActive(true);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Sandbox");
+    }
+
+    public void QuitLevel()
+    {
+        Application.Quit();
+    }
+
+    public void WinMenu()
+    {
+        winPanel.SetActive(true);
+    }
+
+    public void LoseMenu()
+    {
+        losePanel.SetActive(true);
     }
 
 }

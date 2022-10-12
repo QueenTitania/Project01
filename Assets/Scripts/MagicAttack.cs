@@ -58,7 +58,7 @@ public class MagicAttack : MonoBehaviour
             GetComponent<NavMeshAgent>().SetDestination(standingPos.transform.position);
         
         
-        if(!magicing)
+        if(!magicing && target.activeSelf)
             Attack();
     }
 
